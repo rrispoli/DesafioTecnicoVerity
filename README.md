@@ -70,6 +70,60 @@ O sistema é composto por **dois serviços independentes**, cada um seguindo Cle
 3. O **DailyBalance.Worker** consome o `EntryCreatedEvent` via MassTransit e atualiza o saldo consolidado do dia (crédito, débito e total).
 4. O serviço **DailyBalance** expõe uma API para consulta do saldo por data.
 
+### Diagrama C4
+
+**Nível 1 - Contexto**
+
+```mermaid
+flowchart TD
+    Cliente(["Cliente da API<br/>Postman / HTTP + API Key"])
+
+    subgraph Sistema["DesafioTecnicoVerity"]
+        direction LR
+        Entries["Entries<br/>Registra lançamentos"]
+        DailyBalance["DailyBalance<br/>Consolida e consulta saldo"]
+        Entries -- "evento assíncrono<br/>(EntryCreatedEvent)" --> DailyBalance
+    end
+
+    Cliente -- "cria/consulta lançamentos" --> Entries
+    Cliente -- "consulta saldo diário" --> DailyBalance
+```
+
+**Nível 2 - Container**
+
+```mermaid
+flowchart TD
+    Cliente(["Cliente da API"])
+
+    subgraph Entries["Entries"]
+        direction TB
+        EntriesApi["Entries.WebApi"]
+        EntriesWorker["Entries.Worker<br/>OutboxPublisherWorker"]
+        EntriesDb[("entries-database<br/>Lançamentos + Outbox")]
+        EntriesApi --> EntriesDb
+        EntriesWorker --> EntriesDb
+    end
+
+    Broker{{"RabbitMQ<br/>MassTransit"}}
+
+    subgraph DailyBalance["DailyBalance"]
+        direction TB
+        DailyBalanceApi["DailyBalance.WebApi"]
+        DailyBalanceWorker["DailyBalance.Worker<br/>consumidor idempotente"]
+        DailyBalanceDb[("dailybalance-database<br/>Saldos + ProcessedEvents")]
+        DailyBalanceApi --> DailyBalanceDb
+        DailyBalanceWorker --> DailyBalanceDb
+    end
+
+    Cliente --> EntriesApi
+    Cliente --> DailyBalanceApi
+    EntriesWorker -- "publica evento" --> Broker
+    Broker -- "entrega evento" --> DailyBalanceWorker
+```
+
+> O Aspire AppHost não aparece no diagrama por ser apenas orquestrador local de desenvolvimento — ver
+> [ADR 0002](docs/architecture-decision-records/0002-orquestracao-local-com-net-aspire.md).
+
 ## Estrutura do Projeto
 
 ```
@@ -136,6 +190,10 @@ Isso inicia toda a solução:
 Abra a URL do Aspire Dashboard exibida no console para acompanhar a telemetria.
 
 ![Aspire Dashboard](docs/assets/aspire-dashboard.png)
+
+O grafo de recursos do Aspire mostra a topologia orquestrada localmente (WebApis, Workers, RabbitMQ e os dois bancos):
+
+![Aspire Resources](docs/assets/aspire-resources.png)
 
 ### Explorando a API
 
