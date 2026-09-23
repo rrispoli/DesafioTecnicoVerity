@@ -144,6 +144,21 @@ Abra a URL do Aspire Dashboard exibida no console para acompanhar a telemetria.
   ```
   X-API-Key: <valor configurado em appsettings>
   ```
+- Uma collection do Postman com todas as requisições prontas está disponível em [`docs/assets/postman_collection.json`](docs/assets/postman_collection.json).
+
+**Exemplos de requisições (Postman):**
+
+**Criar lançamento**
+
+<img src="docs/assets/create-entry.png" alt="Create entry" width="700" />
+
+**Consultar lançamento**
+
+<img src="docs/assets/get-entry.png" alt="Get entry" width="700" />
+
+**Consultar saldo**
+
+<img src="docs/assets/get-balance.png" alt="Get balance" width="700" />
 
 ### Executando os Testes
 
@@ -158,6 +173,14 @@ dotnet test DesafioTecnicoVerity.slnx
 | Entries | `/api/v1/entries` | POST | Sim (API Key) | Cria um novo lançamento (crédito/débito) |
 | Entries | `/api/v1/entries/{id}` | GET | Sim (API Key) | Consulta um lançamento por ID |
 | DailyBalance | `/api/v1/balances/{date}` | GET | Sim (API Key) | Consulta o saldo consolidado de uma data |
+
+### Teste de performance
+
+O requisito não funcional pede que o DailyBalance suporte picos de 50 req/s com no máximo 5% de perda. O print
+abaixo é de um teste de carga local contra `GET /api/v1/balances/{date}`, atingindo ~473 req/s com 0% de erro
+(detalhes da decisão de não usar cache/Redis na [ADR 0008](docs/architecture-decision-records/0008-escalabilidade-do-dailybalance-sem-cache-redis.md)):
+
+<img src="docs/assets/get-balance-performance-test.png" alt="Teste de performance - Get balance" width="700" />
 
 ## Decisões de Projeto
 
@@ -174,6 +197,7 @@ e negativas) dessa escolha.
 | [0005](docs/architecture-decision-records/0005-outbox-pattern-para-publicacao-confiavel-de-eventos.md) | Outbox Pattern para publicação confiável de eventos | Aceita |
 | [0006](docs/architecture-decision-records/0006-idempotencia-e-consistencia-eventual-no-consumo-de-eventos.md) | Idempotência e consistência eventual no consumo de eventos | Aceita |
 | [0007](docs/architecture-decision-records/0007-versionamento-de-contratos-de-integracao.md) | Estratégia de versionamento dos contratos de integração (eventos) | Aceita |
+| [0008](docs/architecture-decision-records/0008-escalabilidade-do-dailybalance-sem-cache-redis.md) | Escalabilidade do DailyBalance sem cache (Redis) | Aceita |
 
 ## Autor
 

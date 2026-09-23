@@ -18,6 +18,10 @@ Optei por criar **Entries** e **DailyBalance** como dois serviços independentes
 Infrastructure → WebApi/Worker). Eles só se comunicam de forma assíncrona, via evento de integração
 (`EntryCreatedEvent`) publicado pelo Outbox do Entries e consumido pelo Worker do DailyBalance.
 
+Assumi também que um lançamento só pode ser registrado com data atual ou retroativa, nunca futura — o desafio não
+detalha esse ponto, mas essa premissa evita ambiguidade sobre "saldo do dia" (o que seria um saldo consolidado de uma
+data que ainda não aconteceu?) e simplifica a consolidação feita pelo DailyBalance.
+
 ## Alternativas Consideradas
 
 - **Monolito modular** (um único processo com módulos internos se comunicando em memória): seria mais rápido de montar,
