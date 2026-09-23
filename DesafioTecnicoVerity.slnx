@@ -1,0 +1,32 @@
+<Solution>
+  <Folder Name="/aspire/">
+    <Project Path="src/Aspire/AppHost/AppHost.csproj" />
+    <Project Path="src/Aspire/ServiceDefaults/ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/src/DailyBalance/">
+    <Project Path="src/DailyBalance/DailyBalance.Application/DailyBalance.Application.csproj" />
+    <Project Path="src/DailyBalance/DailyBalance.Domain/DailyBalance.Domain.csproj" />
+    <Project Path="src/DailyBalance/DailyBalance.Infrastructure/DailyBalance.Infrastructure.csproj" />
+    <Project Path="src/DailyBalance/DailyBalance.WebApi/DailyBalance.WebApi.csproj" />
+    <Project Path="src/DailyBalance/DailyBalance.Worker/DailyBalance.Worker.csproj" />
+  </Folder>
+  <Folder Name="/src/Entries/">
+    <Project Path="src/Entries/Entries.Application/Entries.Application.csproj" />
+    <Project Path="src/Entries/Entries.Domain/Entries.Domain.csproj" />
+    <Project Path="src/Entries/Entries.Infrastructure/Entries.Infrastructure.csproj" />
+    <Project Path="src/Entries/Entries.WebApi/Entries.WebApi.csproj" />
+    <Project Path="src/Entries/Entries.Worker/Entries.Worker.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/Shared.Application/Shared.Application.csproj" />
+    <Project Path="src/Shared/Shared.Contracts/Shared.Contracts.csproj" />
+    <Project Path="src/Shared/Shared.Domain/Shared.Domain.csproj" />
+    <Project Path="src/Shared/Shared.WebApi/Shared.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DailyBalance.Application.UnitTests/DailyBalance.Application.UnitTests.csproj" />
+    <Project Path="tests/DailyBalance.Architecture.Tests/DailyBalance.Architecture.Tests.csproj" />
+    <Project Path="tests/Entries.Architecture.Tests/Entries.Architecture.Tests.csproj" />
+    <Project Path="tests/Entries.Application.UnitTests/Entries.Application.UnitTests.csproj" />
+  </Folder>
+</Solution>

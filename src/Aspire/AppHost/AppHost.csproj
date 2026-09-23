@@ -1,0 +1,24 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.5.4">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AspireUseCliBundle>true</AspireUseCliBundle>
+    <UserSecretsId>42835f0f-f9a5-4870-8fe6-37ee8b5fbbdd</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.5.4" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DailyBalance\DailyBalance.WebApi\DailyBalance.WebApi.csproj" />
+    <ProjectReference Include="..\..\DailyBalance\DailyBalance.Worker\DailyBalance.Worker.csproj" />
+    <ProjectReference Include="..\..\Entries\Entries.WebApi\Entries.WebApi.csproj" />
+    <ProjectReference Include="..\..\Entries\Entries.Worker\Entries.Worker.csproj" />
+  </ItemGroup>
+
+</Project>
