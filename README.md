@@ -2,7 +2,7 @@
 
 .NET 10 | C# 14 | Aspire 13 | EF Core 10 | MassTransit + RabbitMQ | xUnit v3
 
-Solução de referência para o **Desafio Técnico Verity**: um sistema de lançamentos financeiros (`Entries`) que publica eventos de integração via **Outbox Pattern** para consolidar o **saldo diário** (`DailyBalance`) em um serviço independente, seguindo **Clean Architecture** e uma abordagem orientada a eventos (Event-Driven).
+Solução para o **Desafio Técnico Verity**: um sistema de lançamentos financeiros (`Entries`) que publica eventos de integração via **Outbox Pattern** para consolidar o **saldo diário** (`DailyBalance`) em um serviço independente, seguindo **Clean Architecture** e uma abordagem orientada a eventos (Event-Driven).
 
 ## Tech Stack
 
@@ -11,7 +11,7 @@ Solução de referência para o **Desafio Técnico Verity**: um sistema de lanç
 | **Arquitetura** | Clean Architecture (Domain, Application, Infrastructure, WebApi/Worker) |
 | **Runtime** | .NET 10 / C# 14 |
 | **API** | Minimal APIs com TypedResults |
-| **CQRS** | Handlers manuais — zero dependências, zero risco de licenciamento |
+| **CQRS** | Handlers manuais sem dependências |
 | **Validação** | FluentValidation + Result pattern |
 | **Erros** | ProblemDetails (RFC 9457) + tratamento global de exceções |
 | **Banco de Dados** | EF Core 10 + SQL Server |
@@ -20,7 +20,7 @@ Solução de referência para o **Desafio Técnico Verity**: um sistema de lanç
 | **Documentação de API** | Scalar (UI moderna para OpenAPI) |
 | **Logging** | Serilog (structured logging) |
 | **Observabilidade** | .NET Aspire 13 + OpenTelemetry (traces, metrics, logs) |
-| **Testes** | xUnit v3 + FluentAssertions + NSubstitute + NetArchTest |
+| **Testes** | xUnit v3 + FluentAssertions + Moq + NetArchTest |
 | **Solução** | Formato `.slnx` |
 
 ## Arquitetura
