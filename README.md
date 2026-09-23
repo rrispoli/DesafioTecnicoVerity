@@ -176,7 +176,7 @@ README.md
 ### Executando com Aspire (recomendado)
 
 ```bash
-cd AppHost
+cd src/Aspire/AppHost
 dotnet run
 ```
 
