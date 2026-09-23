@@ -1,0 +1,115 @@
+{
+  "info": {
+    "_postman_id": "7bf157cd-d826-405d-97bc-d4baa534f09d",
+    "name": "Desafio Técnico Verity",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1505131"
+  },
+  "item": [
+    {
+      "name": "Entries",
+      "item": [
+        {
+          "name": "Create entry",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"type\": 1,\r\n    \"amount\": 100,\r\n    \"occurredAt\": \"2026-09-22T09:00:00.000Z\",\r\n    \"description\": \"{{$randomLoremWords}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7196/api/v1/entries",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7196",
+              "path": [
+                "api",
+                "v1",
+                "entries"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get entry",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7196/api/v1/entries/:id",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7196",
+              "path": [
+                "api",
+                "v1",
+                "entries",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "01a0c76c-8625-71b0-bdcd-75ee4176a250"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Daily Balance",
+      "item": [
+        {
+          "name": "Get balance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7159/api/v1/balances/2026-09-21",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7159",
+              "path": [
+                "api",
+                "v1",
+                "balances",
+                "2026-09-21"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "sk_test_rv-zNlM-Er0HVrRbyO-__0bqkAoDfH94yZecFRvBYe4",
+        "type": "string"
+      }
+    ]
+  }
+}
